@@ -4,10 +4,9 @@
 
 @section('content')
 <div class="app-shell">
-    <!-- SIDEBAR KONSISTEN -->
     <aside class="sidebar">
         <a href="{{ url('/dashboard') }}" class="sidebar-brand">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo"> CatCare
+            <img src="{{ asset('logoCat.png') }}" alt="Logo CatCare"> CatCare
         </a>
         <nav class="nav-menu">
             <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>

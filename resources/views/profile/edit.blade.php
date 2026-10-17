@@ -16,7 +16,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+            <a href="#" class="nav-link">
                 <span>Data Kucing</span>
             </a>
 
