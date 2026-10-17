@@ -15,7 +15,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('cats.index') }}" class="nav-link text-gray-600 hover:text-blue-500 ...">
                 <span>Data Kucing</span>
             </a>
 
