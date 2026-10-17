@@ -2,6 +2,10 @@
 
 @section('title', 'Data Kucing | CatCare')
 
+@php
+    $profileRoute = auth()->user()?->role === 'admin' ? route('admin.profile.show') : route('profile.show');
+@endphp
+
 @section('content')
 <div class="app-shell">
     <aside class="sidebar">
@@ -14,7 +18,7 @@
             <a href="#" class="nav-link">Daftar Layanan</a>
             <a href="#" class="nav-link">Data Penitipan</a>
             <a href="#" class="nav-link">Data Pelanggan</a>
-            <a href="{{ url('/profile') }}" class="nav-link">Profil</a>
+            <a href="{{ $profileRoute }}" class="nav-link">Profil</a>
         </nav>
         <div class="sidebar-bottom">
             <form action="{{ route('logout') }}" method="POST">
@@ -31,7 +35,7 @@
             <div class="topbar-title">
                 <h1>Data Kucing</h1>
             </div>
-            <a href="{{ url('/profile') }}" class="topbar-profile">
+            <a href="{{ $profileRoute }}" class="topbar-profile">
                 <div class="profile-avatar">
                     {{ substr(Auth::user()->name ?? 'A', 0, 1) }}
                 </div>

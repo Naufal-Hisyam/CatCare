@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -29,17 +30,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::middleware('role:admin')->prefix('admin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::resource('customers', CustomerController::class);
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         
-        Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
-        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
         Route::get('/profil', function () {
             return view('profile.profile', [
                 'user' => Auth::user(),
             ]);
-        })->name('admin.profile.show');
+        })->name('profile.show');
+    });
+
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/customers', function () {
+            return redirect()->route('admin.customers.index');
+        });
     });
 
 
