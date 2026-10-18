@@ -20,7 +20,7 @@
                 <span>Data Pelanggan</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('layanan.index') }}" class="nav-link">
                 <span>Data Layanan</span>
             </a>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
@@ -19,6 +20,31 @@ Route::get('/', function () {
 // Daftar layanan penitipan
 Route::get('/layanan', [LayananController::class, 'index'])
     ->name('layanan.index');
+
+// Detail layanan penitipan
+Route::get('/layanan/{layanan}', [LayananController::class, 'show'])
+    ->name('layanan.show');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Tambah layanan
+    Route::get('/layanan/tambah', [LayananController::class, 'create'])
+        ->name('layanan.create');
+
+    Route::post('/layanan', [LayananController::class, 'store'])
+        ->name('layanan.store');
+
+    // Edit layanan
+    Route::get('/layanan/{layanan}/edit', [LayananController::class, 'edit'])
+        ->name('layanan.edit');
+
+    // Simpan perubahan layanan
+    Route::put('/layanan/{layanan}', [LayananController::class, 'update'])
+        ->name('layanan.update');
+
+    // Hapus layanan
+    Route::delete('/layanan/{layanan}', [LayananController::class, 'destroy'])
+        ->name('layanan.destroy');
+});
 
 // Login dan register
 Route::middleware('guest')->group(function () {
@@ -78,6 +104,15 @@ Route::middleware('auth')->group(function () {
         Route::put('/profil/password', [ProfileController::class, 'updatePassword'])
             ->name('profile.password.update');
     });
+});
+
+// Pengajuan penitipan khusus pelanggan
+Route::middleware(['auth', 'role:pelanggan'])->group(function () {
+    Route::get('/penitipan/ajukan', [PenitipanController::class, 'create'])
+        ->name('penitipan.create');
+
+    Route::post('/penitipan/ajukan', [PenitipanController::class, 'store'])
+        ->name('penitipan.store');
 });
 
 // Halaman tidak ditemukan
