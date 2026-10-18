@@ -51,7 +51,8 @@ class CustomerController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Password di-enkripsi
+            'password' => Hash::make($request->password),
+            'role' => 'pelanggan',
         ]);
 
         // 3. Kembali ke halaman index dengan pesan sukses

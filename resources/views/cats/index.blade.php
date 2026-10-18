@@ -2,23 +2,35 @@
 
 @section('title', 'Data Kucing | CatCare')
 
-@php
-    $profileRoute = auth()->user()?->role === 'admin' ? route('admin.profile.show') : route('profile.show');
-@endphp
-
 @section('content')
+@php
+    $isAdmin = auth()->user()->role === 'admin';
+    $dashboardRoute = $isAdmin ? route('admin.dashboard') : route('pelanggan.dashboard');
+    $profileRoute = $isAdmin ? route('admin.profile.show') : route('profile.show');
+@endphp
 <div class="app-shell">
     <aside class="sidebar">
-        <a href="{{ url('/dashboard') }}" class="sidebar-brand">
-            <img src="{{ asset('logoCat.png') }}" alt="Logo CatCare"> CatCare
+        <a href="{{ $dashboardRoute }}" class="sidebar-brand">
+            <img src="{{ asset('logoCat.png') }}" alt="Logo CatCare">
+            <span>CatCare</span>
         </a>
         <nav class="nav-menu">
-            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-            <a href="{{ route('cats.index') }}" class="nav-link active">Data Kucing</a>
-            <a href="#" class="nav-link">Daftar Layanan</a>
-            <a href="#" class="nav-link">Data Penitipan</a>
-            <a href="#" class="nav-link">Data Pelanggan</a>
-            <a href="{{ $profileRoute }}" class="nav-link">Profil</a>
+            @if($isAdmin)
+                <a href="{{ $dashboardRoute }}" class="nav-link">Dashboard</a>
+                <a href="{{ route('admin.customers.index') }}" class="nav-link">Data Pelanggan</a>
+                <a href="{{ route('layanan.index') }}" class="nav-link">Data Layanan</a>
+                <a href="{{ route('admin.penitipan.index') }}" class="nav-link">Pengajuan Penitipan</a>
+                <a href="{{ route('admin.pembayaran.index') }}" class="nav-link">Pembayaran</a>
+                <a href="{{ route('admin.riwayat.index') }}" class="nav-link">Riwayat Penitipan</a>
+                <a href="{{ $profileRoute }}" class="nav-link">Profil</a>
+            @else
+                <a href="{{ $dashboardRoute }}" class="nav-link">Dashboard</a>
+                <a href="{{ route('cats.index') }}" class="nav-link active">Data Kucing</a>
+                <a href="{{ route('layanan.index') }}" class="nav-link">Daftar Layanan</a>
+                <a href="{{ route('penitipan.saya') }}" class="nav-link">Penitipan Saya</a>
+                <a href="{{ route('penitipan.riwayat') }}" class="nav-link">Riwayat Penitipan</a>
+                <a href="{{ $profileRoute }}" class="nav-link">Profil</a>
+            @endif
         </nav>
         <div class="sidebar-bottom">
             <form action="{{ route('logout') }}" method="POST">
@@ -41,7 +53,7 @@
                 </div>
                 <div class="profile-info">
                     <strong>{{ Auth::user()->name ?? 'Admin CatCare' }}</strong>
-                    <small>Admin</small>
+                    <small>{{ $isAdmin ? 'Administrator' : 'Pelanggan' }}</small>
                 </div>
             </a>
         </header>
@@ -91,19 +103,21 @@
                                     <td>{{ $cat->user->name ?? 'Tidak diketahui' }}</td>
                                     <td style="text-align: center;">
                                         <a href="{{ route('cats.show', $cat->id) }}" style="color: #368fb9; font-weight: 600; margin-right: 10px;">Detail</a>
-                                        <a href="{{ route('cats.edit', $cat->id) }}" style="color: #d97706; font-weight: 600; margin-right: 10px;">Edit</a>
-                                        <form action="{{ route('cats.destroy', $cat->id) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="background: none; border: none; color: #b9404e; font-weight: 600; cursor: pointer; padding: 0;" onclick="return confirm('Yakin ingin menghapus data kucing ini?')">Hapus</button>
-                                        </form>
+                                        @if($isAdmin || $cat->user_id === auth()->id())
+                                            <a href="{{ route('cats.edit', $cat->id) }}" style="color: #d97706; font-weight: 600; margin-right: 10px;">Edit</a>
+                                            <form action="{{ route('cats.destroy', $cat->id) }}" method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" style="background: none; border: none; color: #b9404e; font-weight: 600; cursor: pointer; padding: 0;" onclick="return confirm('Yakin ingin menghapus data kucing ini?')">Hapus</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
                                     <td colspan="7" class="empty-activity">
                                         <strong>Belum ada data kucing</strong>
-                                        <p>Silakan tambahkan data kucing baru melalui tombol di atas.</p>
+                                        <p>{{ $isAdmin ? 'Belum ada data kucing yang terdaftar.' : 'Silakan tambahkan data kucing baru melalui tombol di atas.' }}</p>
                                     </td>
                                 </tr>
                             @endforelse

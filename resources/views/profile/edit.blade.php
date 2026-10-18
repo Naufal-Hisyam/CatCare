@@ -20,12 +20,8 @@
                 <span>Data Kucing</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('layanan.index') }}" class="nav-link">
                 <span>Daftar Layanan</span>
-            </a>
-
-            <a href="{{ route('penitipan.create') }}" class="nav-link">
-                <span>Ajukan Penitipan</span>
             </a>
 
             <a href="{{ route('penitipan.saya') }}" class="nav-link">

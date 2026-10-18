@@ -24,7 +24,6 @@
             ['Dashboard', route('dashboard'), 'dashboard'],
             ['Data Kucing', route('cats.index'), 'cats.*'],
             ['Daftar Layanan', route('layanan.index'), 'layanan.*'],
-            ['Ajukan Penitipan', route('penitipan.create'), 'penitipan.create'],
             ['Penitipan Saya', route('penitipan.saya'), ['penitipan.saya', 'penitipan.saya.show']],
             ['Riwayat Penitipan', route('penitipan.riwayat'), 'penitipan.riwayat'],
             ['Profil', $profilUrl, '*profile.*'],

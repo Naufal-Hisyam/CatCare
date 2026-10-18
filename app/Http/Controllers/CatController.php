@@ -11,7 +11,13 @@ class CatController extends Controller
     public function index()
     {
         $user = Auth::user();
-        
+
+        abort_unless(
+            in_array($user->role, ['admin', 'pelanggan'], true),
+            403,
+            'Role akun tidak memiliki akses ke data kucing.'
+        );
+
         if ($user->role === 'admin') {
             $cats = Cat::with('user')->latest()->get();
         } else {
@@ -23,11 +29,15 @@ class CatController extends Controller
 
     public function create()
     {
+        $this->authorizeRole();
+
         return view('cats.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorizeRole();
+
         $request->validate([
             'name' => 'required|string|max:255',
             'breed' => 'nullable|string',
@@ -90,8 +100,19 @@ class CatController extends Controller
 
     private function authorizeAccess(Cat $cat)
     {
+        $this->authorizeRole();
+
         if (Auth::user()->role !== 'admin' && $cat->user_id !== Auth::id()) {
             abort(403, 'Anda tidak memiliki akses ke data kucing ini.');
         }
+    }
+
+    private function authorizeRole(): void
+    {
+        abort_unless(
+            in_array(Auth::user()->role, ['admin', 'pelanggan'], true),
+            403,
+            'Role akun tidak memiliki akses ke data kucing.'
+        );
     }
 }

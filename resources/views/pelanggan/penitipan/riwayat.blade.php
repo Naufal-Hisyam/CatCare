@@ -10,7 +10,6 @@
         <p>Penitipan yang sudah selesai atau pengajuan yang ditolak.</p>
     </div>
     <div class="page-actions">
-        <a class="button" href="{{ route('penitipan.create') }}">+ Ajukan Penitipan</a>
     </div>
 </div>
 

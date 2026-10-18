@@ -23,10 +23,6 @@
                 <span>Daftar Layanan</span>
             </a>
 
-            <a href="{{ route('penitipan.create') }}" class="nav-link">
-                <span>Ajukan Penitipan</span>
-            </a>
-
             <a href="{{ route('penitipan.saya') }}" class="nav-link">
                 <span>Penitipan Saya</span>
             </a>

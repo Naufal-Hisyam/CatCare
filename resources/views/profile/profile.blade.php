@@ -19,7 +19,7 @@
                 <span>Data Kucing</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('layanan.index') }}" class="nav-link">
                 <span>Daftar Layanan</span>
             </a>
 

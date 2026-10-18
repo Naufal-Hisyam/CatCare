@@ -17,7 +17,7 @@
             <a href="{{ route('admin.customers.index') }}" class="nav-link active">
                 <span>Data Pelanggan</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('layanan.index') }}" class="nav-link">
                 <span>Data Layanan</span>
             </a>
             <a href="{{ route('admin.penitipan.index') }}" class="nav-link">

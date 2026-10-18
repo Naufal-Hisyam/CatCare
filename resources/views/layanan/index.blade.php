@@ -11,20 +11,58 @@
         </a>
 
         <nav class="nav-menu">
-            <a href="{{ route('dashboard') }}" class="nav-link">
-                <span>Dashboard</span>
-            </a>
-
             @if(auth()->check() && auth()->user()->role === 'admin')
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                    <span>Dashboard</span>
+                </a>
                 <a href="{{ route('admin.customers.index') }}" class="nav-link">
                     <span>Data Pelanggan</span>
                 </a>
+                <a href="{{ route('layanan.index') }}" class="nav-link active">
+                    <span>Data Layanan</span>
+                </a>
+                <a href="{{ route('admin.penitipan.index') }}" class="nav-link">
+                    <span>Pengajuan Penitipan</span>
+                </a>
+                <a href="{{ route('admin.pembayaran.index') }}" class="nav-link">
+                    <span>Pembayaran</span>
+                </a>
+                <a href="{{ route('admin.riwayat.index') }}" class="nav-link">
+                    <span>Riwayat Penitipan</span>
+                </a>
+                <a href="{{ route('admin.profile.show') }}" class="nav-link">
+                    <span>Profil</span>
+                </a>
+            @else
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                    <span>Dashboard</span>
+                </a>
+                <a href="{{ route('cats.index') }}" class="nav-link">
+                    <span>Data Kucing</span>
+                </a>
+                <a href="{{ route('layanan.index') }}" class="nav-link active">
+                    <span>Daftar Layanan</span>
+                </a>
+                <a href="{{ route('penitipan.saya') }}" class="nav-link">
+                    <span>Penitipan Saya</span>
+                </a>
+                <a href="{{ route('penitipan.riwayat') }}" class="nav-link">
+                    <span>Riwayat Penitipan</span>
+                </a>
+                <a href="{{ route('profile.show') }}" class="nav-link">
+                    <span>Profil</span>
+                </a>
             @endif
-
-            <a href="{{ route('layanan.index') }}" class="nav-link active">
-                <span>Data Layanan</span>
-            </a>
         </nav>
+
+        @auth
+            <div class="sidebar-bottom">
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </div>
+        @endauth
     </aside>
 
     <main class="main-area">

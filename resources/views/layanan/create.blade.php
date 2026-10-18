@@ -11,18 +11,35 @@
         </a>
 
         <nav class="nav-menu">
-            <a href="{{ route('dashboard') }}" class="nav-link">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
                 <span>Dashboard</span>
             </a>
-
             <a href="{{ route('admin.customers.index') }}" class="nav-link">
                 <span>Data Pelanggan</span>
             </a>
-
             <a href="{{ route('layanan.index') }}" class="nav-link active">
                 <span>Data Layanan</span>
             </a>
+            <a href="{{ route('admin.penitipan.index') }}" class="nav-link">
+                <span>Pengajuan Penitipan</span>
+            </a>
+            <a href="{{ route('admin.pembayaran.index') }}" class="nav-link">
+                <span>Pembayaran</span>
+            </a>
+            <a href="{{ route('admin.riwayat.index') }}" class="nav-link">
+                <span>Riwayat Penitipan</span>
+            </a>
+            <a href="{{ route('admin.profile.show') }}" class="nav-link">
+                <span>Profil</span>
+            </a>
         </nav>
+
+        <div class="sidebar-bottom">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
     </aside>
 
     <main class="main-area">

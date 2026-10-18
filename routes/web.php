@@ -25,10 +25,6 @@ Route::get('/', function () {
 Route::get('/layanan', [LayananController::class, 'index'])
     ->name('layanan.index');
 
-// Detail layanan penitipan
-Route::get('/layanan/{layanan}', [LayananController::class, 'show'])
-    ->name('layanan.show');
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Tambah layanan
     Route::get('/layanan/tambah', [LayananController::class, 'create'])
@@ -49,6 +45,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/layanan/{layanan}', [LayananController::class, 'destroy'])
         ->name('layanan.destroy');
 });
+
+// Detail layanan penitipan
+Route::get('/layanan/{layanan}', [LayananController::class, 'show'])
+    ->name('layanan.show');
 
 // Login dan register
 Route::middleware('guest')->group(function () {
