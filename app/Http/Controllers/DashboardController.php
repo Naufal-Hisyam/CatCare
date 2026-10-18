@@ -40,6 +40,7 @@ class DashboardController extends Controller
                 ->get()
                 ->map(function ($item) {
                     $item->aktivitas = 'Pengajuan penitipan';
+                    $item->status = \App\Models\Penitipan::LABEL_STATUS[$item->status] ?? $item->status;
 
                     return $item;
                 });
@@ -76,6 +77,7 @@ class DashboardController extends Controller
 
         $totalPembayaranMenunggu = DB::table('penitipan')
             ->where('user_id', $userId)
+            ->whereIn('status', ['disetujui', 'aktif', 'selesai'])
             ->where('status_pembayaran', 'menunggu')
             ->count();
 

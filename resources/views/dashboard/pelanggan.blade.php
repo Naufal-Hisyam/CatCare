@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Dashboard Pelanggan | CatCare')
@@ -16,23 +15,23 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('cats.index') }}" class="nav-link">
                 <span>Data Kucing</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('layanan.index') }}" class="nav-link">
                 <span>Daftar Layanan</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('penitipan.create') }}" class="nav-link">
                 <span>Ajukan Penitipan</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('penitipan.saya') }}" class="nav-link">
                 <span>Penitipan Saya</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('penitipan.riwayat') }}" class="nav-link">
                 <span>Riwayat Penitipan</span>
             </a>
 
