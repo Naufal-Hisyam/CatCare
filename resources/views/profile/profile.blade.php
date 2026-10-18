@@ -5,17 +5,17 @@
 @section('content')
 <div class="app-shell">
     <aside class="sidebar">
-        <a href="{{ route('dashboard') }}" class="sidebar-brand">
+        <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
             <img src="{{ asset('logoCat.png') }}" alt="Logo CatCare">
             <span>CatCare</span>
         </a>
 
         <nav class="nav-menu">
-            <a href="{{ route('dashboard') }}" class="nav-link">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('cats.index') }}" class="nav-link">
                 <span>Data Kucing</span>
             </a>
 
@@ -27,11 +27,11 @@
                 <span>Data Penitipan</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.customers.index') }}" class="nav-link">
                 <span>Data Pelanggan</span>
             </a>
 
-            <a href="{{ route('profile.show') }}" class="nav-link active">
+            <a href="{{ route('admin.profile.show') }}" class="nav-link active">
                 <span>Profil</span>
             </a>
         </nav>
@@ -52,7 +52,7 @@
                 <h1>Profil</h1>
             </div>
 
-            <a href="{{ route('profile.show') }}" class="topbar-profile">
+            <a href="{{ route('admin.profile.show') }}" class="topbar-profile">
                 <div class="profile-avatar">
                     {{ strtoupper(substr($user->name ?? 'A', 0, 1)) }}
                 </div>
