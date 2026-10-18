@@ -16,7 +16,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.customers.index') }}" class="nav-link">
                 <span>Data Pelanggan</span>
             </a>
 

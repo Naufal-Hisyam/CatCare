@@ -17,6 +17,11 @@ class User extends Authenticatable
         'role',
     ];
 
+    public function cats()
+    {
+        return $this->hasMany(Cat::class);
+    }
+
     protected $hidden = [
         'password',
         'remember_token',
