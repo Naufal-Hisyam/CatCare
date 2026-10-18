@@ -20,13 +20,13 @@
             <a href="#" class="nav-link">
                 <span>Data Layanan</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.penitipan.index') }}" class="nav-link">
                 <span>Pengajuan Penitipan</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.pembayaran.index') }}" class="nav-link">
                 <span>Pembayaran</span>
             </a>
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.riwayat.index') }}" class="nav-link">
                 <span>Riwayat Penitipan</span>
             </a>
             <a href="{{ route('admin.profile.show') }}" class="nav-link">
