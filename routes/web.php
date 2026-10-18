@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LayananController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -24,6 +25,8 @@ Route::middleware('guest')->group(function () {
         ->name('register.process');
 });
 
+Route::get('/layanan', [LayananController::class, 'index'])
+        ->name('layanan.index');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
