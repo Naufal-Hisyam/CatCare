@@ -11,6 +11,10 @@ use App\Http\Controllers\PenitipanController;
 use App\Http\Controllers\CatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Admin\PenitipanController as AdminPenitipanController;
+use App\Http\Controllers\Admin\PembayaranController as AdminPembayaranController;
+use App\Http\Controllers\Admin\RiwayatController as AdminRiwayatController;
+use App\Http\Controllers\Pelanggan\PenitipanSayaController;
 
 // Halaman awal
 Route::get('/', function () {
@@ -113,6 +117,37 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
 
     Route::post('/penitipan/ajukan', [PenitipanController::class, 'store'])
         ->name('penitipan.store');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Anggota 4 — Proses Penitipan, Pembayaran, dan Riwayat
+|--------------------------------------------------------------------------
+*/
+
+// Admin: pengajuan, proses penitipan, pembayaran tunai, riwayat
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/penitipan', [AdminPenitipanController::class, 'index'])->name('penitipan.index');
+    Route::get('/penitipan/{penitipan}', [AdminPenitipanController::class, 'show'])->name('penitipan.show');
+    Route::post('/penitipan/{penitipan}/setujui', [AdminPenitipanController::class, 'setujui'])->name('penitipan.setujui');
+    Route::post('/penitipan/{penitipan}/tolak', [AdminPenitipanController::class, 'tolak'])->name('penitipan.tolak');
+    Route::post('/penitipan/{penitipan}/masuk', [AdminPenitipanController::class, 'masuk'])->name('penitipan.masuk');
+    Route::post('/penitipan/{penitipan}/keluar', [AdminPenitipanController::class, 'keluar'])->name('penitipan.keluar');
+    Route::post('/penitipan/{penitipan}/selesai', [AdminPenitipanController::class, 'selesai'])->name('penitipan.selesai');
+
+    Route::get('/pembayaran', [AdminPembayaranController::class, 'index'])->name('pembayaran.index');
+    Route::get('/pembayaran/{penitipan}', [AdminPembayaranController::class, 'show'])->name('pembayaran.show');
+    Route::post('/pembayaran/{penitipan}', [AdminPembayaranController::class, 'store'])->name('pembayaran.store');
+
+    Route::get('/riwayat', [AdminRiwayatController::class, 'index'])->name('riwayat.index');
+});
+
+// Pelanggan: status & riwayat penitipan milik sendiri
+Route::middleware(['auth', 'role:pelanggan'])->group(function () {
+    Route::get('/penitipan-saya', [PenitipanSayaController::class, 'index'])->name('penitipan.saya');
+    Route::get('/penitipan-saya/{penitipan}', [PenitipanSayaController::class, 'show'])->name('penitipan.saya.show');
+    Route::get('/riwayat-penitipan', [PenitipanSayaController::class, 'riwayat'])->name('penitipan.riwayat');
 });
 
 // Halaman tidak ditemukan

@@ -1,0 +1,147 @@
+/* Komponen halaman panel CatCare (admin & pelanggan).
+   Memakai variabel warna yang sudah didefinisikan di layouts/app.blade.php */
+
+.page-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.page-head h2 { margin: 0 0 4px; font-size: 18px; font-weight: 800; color: var(--text); }
+.page-head p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.page-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Tombol (versi inline, berbeda dari .btn lebar penuh milik form login) */
+.button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 38px; padding: 8px 16px;
+    border: 1px solid var(--blue); border-radius: 8px;
+    color: #fff; background: var(--blue);
+    font-size: 12px; font-weight: 700; line-height: 1.2;
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+    transition: background .2s, border-color .2s, color .2s;
+}
+.button:hover { background: var(--blue-hover); border-color: var(--blue-hover); color: #fff; }
+.button-outline { color: var(--blue-dark); background: #fff; border-color: #bce8fa; }
+.button-outline:hover { color: var(--blue-dark); background: var(--blue-soft); border-color: var(--blue); }
+.button-danger { background: #d9576a; border-color: #d9576a; }
+.button-danger:hover { background: #c4414f; border-color: #c4414f; }
+.button-success { background: #2f9e72; border-color: #2f9e72; }
+.button-success:hover { background: #23845f; border-color: #23845f; }
+.button-sm { min-height: 30px; padding: 5px 11px; font-size: 11px; border-radius: 7px; }
+.button[disabled] { opacity: .55; cursor: not-allowed; }
+.inline-form { display: inline; margin: 0; }
+
+/* Kartu */
+.card {
+    padding: 20px 22px; margin-bottom: 18px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--white); box-shadow: var(--shadow);
+}
+.card h3 { margin: 0 0 14px; font-size: 14px; font-weight: 800; color: var(--text); }
+.card-flush { padding: 0; overflow: hidden; }
+.card-flush .card-title { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.card-flush .card-title h3 { margin: 0; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.muted { color: var(--muted); }
+
+/* Badge status */
+.badge {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+}
+.badge-warning { color: #9a6700; background: #fff4d6; }
+.badge-info    { color: #0f6a96; background: #def3fd; }
+.badge-primary { color: #5a3fb3; background: #ece6ff; }
+.badge-success { color: #1d7a56; background: #e0f6ec; }
+.badge-danger  { color: #b0344a; background: #ffe6ea; }
+.badge-muted   { color: #6d7f8a; background: #eef3f6; }
+
+/* Tabel (memakai .activity-table dari layout) */
+.table-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.activity-table td small { color: var(--muted); }
+.text-right { text-align: right; }
+.nowrap { white-space: nowrap; }
+
+/* Filter */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+.filter-bar input, .filter-bar select { min-height: 36px; padding: 6px 11px; border: 1px solid var(--border); border-radius: 7px; background: #fff; font-size: 12px; color: var(--text); }
+.filter-bar input { min-width: 220px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tab { padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px; background: #fff; color: #527b91; font-size: 12px; font-weight: 600; text-decoration: none; }
+.tab:hover { background: var(--blue-soft); }
+.tab.active { color: #fff; background: var(--blue); border-color: var(--blue); }
+
+/* Form */
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 12px; font-weight: 700; color: #527b91; }
+.field label .req { color: #d9576a; }
+.field input, .field select, .field textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+    background: #fff; color: var(--text); font-size: 13px; outline: none;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(114, 200, 237, .2); }
+.field textarea { min-height: 90px; resize: vertical; }
+.field .hint { font-size: 11px; color: var(--muted); }
+.field .error { font-size: 11px; color: var(--danger); }
+.field.has-error input, .field.has-error select, .field.has-error textarea { border-color: #e48b97; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.check-row { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.check-row input { width: auto; }
+
+/* Detail (definisi) */
+.detail-list { display: grid; grid-template-columns: 170px 1fr; gap: 10px 16px; margin: 0; font-size: 13px; }
+.detail-list dt { color: var(--muted); font-weight: 600; }
+.detail-list dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+
+/* Kartu layanan */
+.service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.service-card { display: flex; flex-direction: column; gap: 10px; padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: #fff; box-shadow: var(--shadow); }
+.service-card h3 { margin: 0; font-size: 17px; font-weight: 800; color: var(--blue-dark); }
+.service-card p { margin: 0; font-size: 12px; line-height: 1.7; color: #527b91; flex: 1; }
+.service-price { font-size: 20px; font-weight: 800; color: var(--text); }
+.service-price small { font-size: 11px; font-weight: 600; color: var(--muted); }
+
+/* Kotak informasi */
+.info-box { padding: 14px 16px; border: 1px dashed #bce8fa; border-radius: 10px; background: var(--blue-soft); font-size: 13px; }
+.info-box .big { display: block; margin-top: 4px; font-size: 22px; font-weight: 800; color: var(--blue-dark); }
+.info-box small { color: var(--muted); }
+
+/* Alur status */
+.steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+.steps li { padding: 6px 12px; border-radius: 999px; background: #eef3f6; color: #7b909c; font-size: 11px; font-weight: 700; }
+.steps li.done { color: #1d7a56; background: #e0f6ec; }
+.steps li.now { color: #fff; background: var(--blue); }
+.steps li.fail { color: #fff; background: #d9576a; }
+
+/* Pagination */
+.pagination { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 12px 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+.pagination-links { display: flex; gap: 6px; }
+.page-item { padding: 6px 12px; border: 1px solid var(--border); border-radius: 7px; background: #fff; color: var(--blue-dark); text-decoration: none; }
+.page-item.disabled { color: #b4c3cc; }
+.page-item.current { color: var(--text); background: var(--blue-soft); }
+a.page-item:hover { background: var(--blue-soft); }
+
+/* Halaman error */
+.error-page { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 30px 20px; text-align: center; background: var(--background); }
+.error-page .code { font-size: 72px; font-weight: 800; line-height: 1; color: var(--blue); }
+.error-page h1 { margin: 10px 0 6px; font-size: 22px; color: var(--text); }
+.error-page p { max-width: 420px; margin: 0 0 22px; font-size: 13px; line-height: 1.7; color: var(--muted); }
+
+.alert strong { display: block; }
+
+@media (max-width: 960px) {
+    .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .service-grid, .form-grid { grid-template-columns: 1fr; }
+    .detail-list { grid-template-columns: 1fr; gap: 2px; }
+    .detail-list dd { margin-bottom: 10px; }
+    .card { padding: 16px 14px; }
+    .filter-bar input { min-width: 0; width: 100%; }
+}

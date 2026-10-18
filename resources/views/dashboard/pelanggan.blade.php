@@ -27,11 +27,11 @@
                 <span>Ajukan Penitipan</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('penitipan.saya') }}" class="nav-link">
                 <span>Penitipan Saya</span>
             </a>
 
-            <a href="#" class="nav-link">
+            <a href="{{ route('penitipan.riwayat') }}" class="nav-link">
                 <span>Riwayat Penitipan</span>
             </a>
 
